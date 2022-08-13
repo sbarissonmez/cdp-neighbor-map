@@ -13,3 +13,4 @@ For that please use the following files:
     defaults.yaml ---> can be left empty, but must be present as a file
     groups.yaml ---> is used to group your hosts an provide a plattform info (used for authentication)
     hosts.yaml ---> is used to put in the hosts you want to run the scripts against in yaml format
+
