@@ -2,5 +2,5 @@
 
 access:
     platform: 'ios'
-    username: 'username'
-    password: 'pw'
+    username: 'admin'
+    password: 'admin'
