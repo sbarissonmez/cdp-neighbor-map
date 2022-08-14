@@ -19,6 +19,8 @@ nr.inventory.groups['group'].username = access_user
 # set password for Group
 nr.inventory.groups['group'].password = access_password
 
+#==============================================================================
+
 # Get all Interfaces for given VLAN and enable CDP on them
 def cdp_enable(task):
     r = task.run(task=netmiko_send_command,
@@ -35,6 +37,7 @@ def cdp_enable(task):
                                   intf, config_commands=["interface " + intf, "cdp enable"])
         time.sleep(60)  # Wait 60 Seconds to detect new CDP Neighbors
 
+#==============================================================================
 
 def cdp_map(task):
     r = task.run(task=netmiko_send_command,
@@ -52,6 +55,7 @@ def cdp_map(task):
             "description " + str(remote_id)]
         )
 
+#==============================================================================
 
 def cdp_map_po(task):
     r = task.run(task=netmiko_send_command,
@@ -69,12 +73,14 @@ def cdp_map_po(task):
             "description " + str(member_des)]
         )
 
+#==============================================================================
+# ---- Main: Run Commands
+#==============================================================================
 
 results_enable = nr.run(task=cdp_enable)
 results_map = nr.run(task=cdp_map)
 results_map_po = nr.run(task=cdp_map_po)
-write_mem = nr.run(task=netmiko_send_command,
-                   command_string="write mem", use_genie=True)
+write_mem = nr.run(task=netmiko_send_command, command_string="write mem", use_genie=True)
 
 print_result(results_enable)
 print_result(results_map)

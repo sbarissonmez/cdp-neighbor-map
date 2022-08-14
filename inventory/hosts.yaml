@@ -1,13 +1,13 @@
 switch_access_1:
   groups:
   - access
-  hostname: 192.168.1.10
+  hostname: 172.29.151.3
   name: switch_access
   platform: ios
   
   switch_access_2:
   groups:
   - access
-  hostname: 192.168.1.11
+  hostname: 172.29.151.4
   name: switch_access
   platform: ios
