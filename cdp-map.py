@@ -10,18 +10,14 @@ import getpass
 nr = InitNornir(config_file="/config.yaml")
 
 Set Credentials for Group
-# Enter Username for Switch in Group
 access_user = input('Enter Access Username: ') 
-# Enter password for Device in Group in Hosts.yaml
 access_password = getpass.getpass(prompt="Access Switch password: ")
-# set Username for Group
 nr.inventory.groups['group'].username = access_user
-# set password for Group
 nr.inventory.groups['group'].password = access_password
 
 #==============================================================================
 
-# Get all Interfaces for given VLAN and enable CDP on them
+# Retrieve all the interfaces associated with a specified VLAN and activate CDP on them.
 def cdp_enable(task):
     r = task.run(task=netmiko_send_command,
                  command_string="sh vlan", use_genie=True)
@@ -35,7 +31,7 @@ def cdp_enable(task):
         for intf in interfaces:
             cdp_enable = task.run(netmiko_send_config, name="Enable CDP on Interface " +
                                   intf, config_commands=["interface " + intf, "cdp enable"])
-        time.sleep(60)  # Wait 60 Seconds to detect new CDP Neighbors
+        time.sleep(60)  # Wait for a period of 60 seconds to allow detection of new CDP neighbors.
 
 #==============================================================================
 
@@ -74,7 +70,7 @@ def cdp_map_po(task):
         )
 
 #==============================================================================
-# ---- Main: Run Commands
+# ---- Execute Commands
 #==============================================================================
 
 results_enable = nr.run(task=cdp_enable)
