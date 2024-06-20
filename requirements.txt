@@ -4,5 +4,5 @@ nornir-jinja2==0.1.2
 nornir-napalm==0.1.2
 nornir-netmiko==0.1.1
 nornir-utils==0.1.2
-paramiko==2.11.0
+paramiko==3.4.0
 pyats==21.2
